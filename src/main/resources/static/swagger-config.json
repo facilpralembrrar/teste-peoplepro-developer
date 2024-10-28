@@ -1,0 +1,8 @@
+{
+  "urls": [
+    {
+      "url": "http://localhost:8989/api-docs",
+      "name": "members"
+    }
+  ]
+}

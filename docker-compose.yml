@@ -1,0 +1,50 @@
+version: '3.8'
+
+services:
+  localhost:
+    image: alpine:latest
+    command: sleep infinity
+    ports:
+      - "8080:8080" # Keycloak port
+      - "8989:8989" # Application port
+      - "5005:5005" # Application debug port
+  app:
+    image: "app:0.0.1"
+    container_name: "app"
+    build:
+      context: .
+    depends_on:
+      mysqldb:
+        condition: service_healthy
+      keycloak:
+        condition: service_started
+    environment:
+      SPRING_DATASOURCE_URL: "jdbc:mysql://mysqldb:3306/mysql-db?createDatabaseIfNotExist=true"
+      SPRING_DATASOURCE_USERNAME: "appuser"
+      SPRING_DATASOURCE_PASSWORD: "appuser@123"
+      JWT_ISSUER_URI: "http://localhost:8080/realms/master"
+    network_mode: "service:localhost"
+  mysqldb:
+    image: mysql/mysql-server:latest
+    container_name: "mysql-db"
+    restart: always
+    environment:
+      MYSQL_DATABASE: "mysql-db"
+      MYSQL_USER: "appuser"
+      MYSQL_PASSWORD: "appuser@123"
+    ports:
+      - '3306:3306'
+    healthcheck:
+      test: [ "CMD", "mysqladmin" ,"ping", "-h", "localhost" ]
+      retries: 10
+      interval: 3s
+      timeout: 30s
+  keycloak:
+    image: quay.io/keycloak/keycloak:latest
+    container_name: keycloak
+    environment:
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+    command: start-dev
+    network_mode: "service:localhost"
+
