@@ -1,4 +1,4 @@
-# Desafio Totvs - Desenvolvedor Backend
+# Desafio People Pro - Desenvolvedor Backend
 Proposta de solução do teste prático para desenvolvedor
 
 ## Descrição
@@ -6,10 +6,10 @@ Proposta de solução do teste prático para desenvolvedor
 O desafio pede a implementação de uma aplicação com interface API Rest para o cadastro de usuários. A API deverá permitir:
 
 1. Cadastrar usuários;
-2. Atualizar os dados de um usuário;
-3. Alterar os dados de um usuário;
-4. Obter uma lista de usuários usando como filtro o nome do usuário;
-5. Obter um usuário através do seu CPF.
+2. Alterar os dados de um usuário;
+3. Obter uma lista de todos os usuários cadastrados;
+4. Obter um usuário pelo seu identificador;
+5. Inativar um usuário (remoção lógica).
 
 ## Tecnologias Utilizadas
 
@@ -39,7 +39,7 @@ Após a execução, a documentação da API, exposta através do Swagger UI, pod
 [Usuários - API](http://localhost:8989/swagger-ui/index.html)
 
 Para proteção dos endpoints da aplicação através de tokens JWT, foi escolhido o Keycloak como mecanismo de autenticação e autorização. O Keycloak, por padrão, já possui um usuário admin (com senha admin) que pode ser configurado para os testes de acesso da API.
-Assim, faz-se necessária inclusão da propriedade de usuário `"username"` nos claims do token a ser gerado pelo Keycloak. Esse processo pode ser vistos, por exemplo, nesses dois links da internet: 
+Assim, faz-se necessária inclusão da propriedade de usuário `"username"` nos claims do token a ser gerado pelo Keycloak. Esse processo pode ser visto, por exemplo, nos dois links que seguem: 
 
 https://medium.com/@lakshminp/adding-user-attributes-to-jwt-token-in-keycloak-f3981b7df310
 
