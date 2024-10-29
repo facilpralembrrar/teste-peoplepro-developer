@@ -49,6 +49,10 @@ https://www.baeldung.com/keycloak-custom-user-attributes
 
 A interface de administração do Keycloak pode ser acessada, durante a execução do projeto, em http://localhost:8080/admin. Utilize as credenciais admin/admin.
 
+Após adição da propriedade de usuário `"username"` nos claims do token, o JWT token pode ser obtido através do Postman ou outra ferramenta similar, como segue:
+
+![JWT Token Postman](images/jwt-postman.png)
+
 ## Estrutura do Projeto
 
 O projeto foi organizado seguindo o padrão **Domain Driven Design (DDD)** com uma **arquitetura hexagonal**. O contexto **Core** está estruturado da seguinte forma:
