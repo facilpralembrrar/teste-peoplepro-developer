@@ -47,6 +47,8 @@ https://www.baeldung.com/keycloak-custom-user-attributes
 
 *A propriedade "username" será usada para preenchimento dos campos "createdBy" e "updatedBy" no cadastro de usuários*
 
+A interface de administração do Keycloak pode ser acessada, durante a execução do projeto, em http://localhost:8080/admin. Utilize as credenciais admin/admin.
+
 ## Estrutura do Projeto
 
 O projeto foi organizado seguindo o padrão **Domain Driven Design (DDD)** com uma **arquitetura hexagonal**. O contexto **Core** está estruturado da seguinte forma:
