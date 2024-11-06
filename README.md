@@ -30,28 +30,21 @@ O desenvolvedor deverá ter instalado em sua máquina o JDK 21, além do Docker 
 
 Antes de executar o projeto, faz-se necessário verificar se o Docker e Docker Compose estão instalados na máquina.
 
-## Como Executar
+### Como Executar
 
-Para executar o projeto localmente, deve-se usar o comando `docker-compose up --build` no diretório raíz do projeto.
-
-Após a execução, a documentação da API, exposta através do Swagger UI, pode ser visualizada acessando a seguinte URL:
+Para executar o projeto localmente, deve-se usar o script `bin/start.sh`. Após sua execução, a documentação da API, exposta através do Swagger UI, pode ser visualizada através do link:
 
 [Usuários - API](http://localhost:8989/swagger-ui/index.html)
 
-Para proteção dos endpoints da aplicação através de tokens JWT, foi escolhido o Keycloak como mecanismo de autenticação e autorização. O Keycloak, por padrão, já possui um usuário admin (com senha admin) que pode ser configurado para os testes de acesso da API.
-Assim, faz-se necessária inclusão da propriedade de usuário `"username"` nos claims do token a ser gerado pelo Keycloak. Esse processo pode ser visto, por exemplo, nos dois links que seguem: 
+Os endpoints apresentados na documentação encontram-se protegidos pelo protocolo de autorização OAuth 2.0. Assim, para chamá-los será, necessário passar no request um token de acesso JWT válido.
+A geração desse token será realizada através do serviço de autenticação e autorização *Keycloak*, iniciado durante a execução do projeto.
 
-https://medium.com/@lakshminp/adding-user-attributes-to-jwt-token-in-keycloak-f3981b7df310
+Em um terminal, execute o script `bin/access-token.sh` para obter um novo token de acesso. O resultado deverá ser semelhante ao exibido abaixo:
 
-https://www.baeldung.com/keycloak-custom-user-attributes
+![JWT Token Postman](images/access-token.png)
+*A propriedade "username" presente no token JWT será usada para preenchimento dos campos "createdBy" e "updatedBy" no cadastro de usuários*
 
-*A propriedade "username" será usada para preenchimento dos campos "createdBy" e "updatedBy" no cadastro de usuários*
-
-A interface de administração do Keycloak pode ser acessada, durante a execução do projeto, em http://localhost:8080/admin. Utilize as credenciais admin/admin.
-
-Após adição da propriedade de usuário `"username"` nos claims do token, o JWT token pode ser obtido através do Postman ou outra ferramenta similar, como segue:
-
-![JWT Token Postman](images/jwt-postman.png)
+Para parar a execução do projeto, basta usar o script `bin/stop.sh`.
 
 ## Estrutura do Projeto
 

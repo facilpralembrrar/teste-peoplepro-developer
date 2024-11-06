@@ -78,7 +78,7 @@ public class UsuarioController {
             @ApiResponse(responseCode = "200", content = {@Content(schema = @Schema(implementation = GetAllUsuariosResponse.class), mediaType = "application/json")}),
             @ApiResponse(responseCode = "404", content = {@Content(schema = @Schema())}),
     })
-    @GetMapping("/")
+    @GetMapping
     public ResponseEntity<GetAllUsuariosResponse> getAll(
             @Parameter(
                     name = "page",
@@ -105,7 +105,7 @@ public class UsuarioController {
             @ApiResponse(responseCode = "201", content = {@Content(schema = @Schema())}),
             @ApiResponse(responseCode = "400", content = {@Content(schema = @Schema())})
     })
-    @PostMapping("/")
+    @PostMapping
     public ResponseEntity<CreateUsuarioResponse> create(
             @RequestBody CreateUsuarioRequest createUsuarioRequest) {
         Usuario usuario = createUsuarioUseCase.create(
